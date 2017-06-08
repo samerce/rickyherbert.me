@@ -262,7 +262,7 @@
   }
 }
 
-@media only screen and (max-width: 1136px) {
+@media only screen and (max-width: 1100px) {
   .timeline {
     @include flatTimeline();
     height: 5100px;

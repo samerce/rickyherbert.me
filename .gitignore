@@ -1,0 +1,10 @@
+node_modules/
+bower_components/
+.sass-cache/
+.idea/
+.tmp/
+dist/
+
+/aws-credentials.json
+.awspublish*
+/.DS_Store

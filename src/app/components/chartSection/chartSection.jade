@@ -1,0 +1,5 @@
+.chart-section(class="{{name}}")
+  h2 {{name}}
+  .rows
+    .chart-row(ng-repeat="aRow in values", style="width: {{100 * aRow[1]}}%")
+      .row(style="background: {{aRow[2]}}") {{aRow[0]}}

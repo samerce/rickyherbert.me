@@ -1,0 +1,119 @@
+.chart-section {
+  flex: 0 0 50%;
+  $colPadding: 20px;
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-weight: 600;
+    overflow: hidden;
+
+    .chart-row {
+      flex: 0 0 auto;
+      margin-top: 5px;
+      border: 1px solid rgba(0,0,0,.1);
+      box-shadow: 0 0 5px rgba(0,0,0,.1);
+      transition: all .7s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  }
+  h2 {
+    text-transform: uppercase;
+    padding: 0 $colPadding;
+  }
+  .chart-row .row {
+    $height: 35px;
+    height: $height;
+    line-height: $height;
+    padding: 0 15px;
+    color: white;
+  }
+  &.languages {
+    .rows {
+      padding-right: $colPadding;
+
+      .chart-row {
+        text-align: right;
+        border-radius: 5px 3px 3px 5px;
+        transform: translateX(150%);
+        .row {
+          border-radius: 5px 3px 3px 5px;
+        }
+      }
+    }
+    h2 {
+      text-align: right;
+    }
+  }
+  &.frameworks {
+    .rows {
+      padding-left: $colPadding;
+      align-items: flex-start;
+
+      .chart-row {
+        border-radius: 3px 5px 5px 3px;
+        transform: translateX(-150%);
+        .row {
+          border-radius: 3px 5px 5px 3px;
+        }
+      }
+    }
+    h2 {
+      text-align: left;
+    }
+  }
+}
+
+@media print {
+  .chart-section {
+    .rows .chart-row {
+      border: none;
+    }
+    .chart-row .row {
+      $height: 20px;
+      height: $height;
+      line-height: $height;
+      font-size: 11px;
+      padding: 0 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  $colPadding: 10px;
+
+  .chart-section {
+    h2 {
+      font-size: 18px;
+      padding: 0 $colPadding;
+    }
+    .chart-row .row {
+      $height: 30px;
+      height: $height;
+      line-height: $height;
+      font-size: 12px;
+      padding: 0 10px;
+    }
+    &.languages {
+      .rows {
+        padding-right: $colPadding;
+      }
+    }
+    &.frameworks {
+      .rows {
+        padding-left: $colPadding;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .chart-section.languages h2 {
+    text-align: left;
+    padding: 0;
+  }
+  .chart-row  {
+    width: 100% !important;
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,210 @@
+.main {
+  padding-top: 20px;
+
+  h1 {
+    text-align: center;
+    font-size: 42px;
+    margin: 0;
+    font-family: Radley, Helvetica, sans-serif;
+    text-shadow: 1px 1px rgba(0,0,0,.1);
+  }
+
+  .email, .phone {
+    position: absolute;
+    top: 25px;
+    font-size: 16px;
+    text-decoration: none;
+    color: green;
+    background: white;
+    width: 220px;
+    $height: 40px;
+    height: $height;
+    padding: 0 15px;
+    text-align: center;
+    @include card;
+
+    div {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: $height;
+    }
+    i {
+      padding: 0 8px;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+  $contactPadding: 50px;
+  .email {
+    right: 0;
+  }
+  .phone {
+    // left: $contactPadding;
+    // text-align: right;
+  }
+
+  .charts {
+    display: flex;
+    position: relative;
+    margin: 15px 30px 20px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    background: white;
+
+    h2 {
+      margin: 5px 0;
+    }
+
+    .separator {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      background: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0));
+      height: 440px;
+    }
+  }
+
+  h2.tools, h2.exp {
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .tools-section {
+    display: flex;
+    max-width: 700px;
+    margin: 20px auto 20px;
+    padding: 0;
+    @include card;
+
+    .tool {
+      $border: 1px solid green;
+      $height: 35px;
+      background: rgb(164, 198, 57);
+      color: white;
+      font-weight: 600;
+      border-left: $border;
+      text-align: center;
+      height: $height;
+      line-height: $height;
+
+      &.git {
+        flex: 0 0 16%;
+        border-radius: 5px 0 0 5px;
+        border-left: none;
+      }
+      &.intellij {
+        flex: 0 0 23%;
+      }
+      &.eclipse {
+        flex: 0 0 23%;
+      }
+      &.xcode {
+        flex: 0 0 23%;
+      }
+      &.gulp {
+        flex: 0 0 15%;
+        border-radius: 0 5px 5px 0;
+      }
+    }
+  }
+
+}
+
+@media print {
+  html {
+    transform: scale(.9);
+    transform-origin: top center;
+  }
+  .main {
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+    .email, .phone {
+      font-size: 12px;
+      top: 20px;
+      $height: 30px;
+      height: $height;
+      box-shadow: none;
+
+      div {
+        line-height: height;
+      }
+    }
+    .email{
+      right: 0;
+      text-align: right;
+      i {
+        font-size: 18px;
+      }
+    }
+    .phone {
+      left: 10px;
+      text-align: left;
+    }
+    .chart-row .row {
+      font-size: 15px;
+    }
+
+    .charts {
+      box-shadow: none;
+      border: none;
+      .separator {
+        height: 300px;
+      }
+    }
+
+    h2.tools {
+      margin: 10px auto;
+    }
+    .tools-section {
+      margin: 10px auto;
+      .tool {
+        $height: 25px;
+        height: $height;
+        line-height: $height;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 840px) {
+  .main {
+    $contactPadding: 20px;
+    .email {
+      right: $contactPadding;
+    }
+    .phone {
+      left: $contactPadding;
+    }
+    h1 {
+      margin-bottom: 70px;
+    }
+    .email, .phone {
+      top: 85px;
+    }
+    .charts {
+      padding: 0 20px;
+      .separator {
+        height: 410px;
+      }
+    }
+    h2.tools {
+        margin-top: 50px;
+      }
+    .tools-section {
+      font-size: 12px;
+      margin: 30px;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .main {
+    .email, .phone {
+      font-size: 12px;
+    }
+  }
+}
+

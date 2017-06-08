@@ -183,6 +183,8 @@
     }
     .email, .phone {
       top: 85px;
+      width: 180px;
+      font-size: 12px;
     }
     .charts {
       padding: 0 20px;
@@ -200,10 +202,15 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 468px) {
   .main {
     .email, .phone {
-      font-size: 12px;
+      right: 50%;
+      transform: translateX(50%);
+      left: initial;
+    }
+    .phone {
+      top: 140px;
     }
   }
 }

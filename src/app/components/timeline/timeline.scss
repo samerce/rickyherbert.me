@@ -1,7 +1,7 @@
 .timeline {
   $focusColor: green;
   position: relative;
-  height: 7700px;
+  height: 5400px;
   max-width: 1100px;
   margin: 30px auto 0;
   display: flex;
@@ -13,12 +13,13 @@
     transform: translateX(-50%);
     width: 2px;
     background: linear-gradient(to bottom, black 95%, transparent);
-    height: 7550px;
+    height: 100%;
     content: ' ';
   }
 
   .column {
     flex: 0 0 50%;
+    position: relative;
 
     &.left {
       .pointer {
@@ -50,9 +51,10 @@
   }
 
   .column .node {
-    position: relative;
-    margin-bottom: 20px;
+    position: absolute;
     padding: 0 30px;
+    min-width: 300px;
+    width: 89.1%;
 
     .pointer {
       position: absolute;
@@ -136,38 +138,31 @@
       top: 20px;
     }
     &.glyphite {
-      margin-top: 280px;
       .date {
         min-width: 158px;
       }
     }
     &.tal {
-      margin-top: 350px;
       .date {
         min-width: 160px;
       }
     }
     &.amazon {
-      margin-top: 395px;
       .date {
         min-width: 154px;
       }
     }
     &.degree {
-      margin-top: 500px;
       .date {
         min-width: 154px;
       }
-    }
-    &.r3 {
-      margin-top: 680px;
     }
   }
 }
 
 @mixin flatTimeline {
   display: block;
-  padding-top: 20px;
+  padding-top: 50px;
 
   &:before {
     width: 3px;
@@ -179,16 +174,26 @@
 
     &.right {
       right: 0;
+      .date {
+        text-align: center;
+      }
     }
     &.left {
       .dot-area {
         transform: translateX(-50%);
+      }
+      .date {
+        text-align: center;
       }
     }
   }
 
   .column .node {
     background: white;
+    padding: 0;
+    left: 30px;
+    right: 30px;
+    width: initial;
 
     .pointer {
       display: none;
@@ -253,19 +258,6 @@
           display: none;
         }
       }
-
-      &.glyphite {
-        top: 10px;
-      }
-      &.tal {
-        top: 170px;
-      }
-      &.amazon {
-        top: 50px;
-      }
-      &.degree {
-        top: 180px;
-      }
     }
   }
 }
@@ -273,66 +265,36 @@
 @media only screen and (max-width: 1136px) {
   .timeline {
     @include flatTimeline();
-
-    .column .node {
-      &.glyphite {
-        margin-top: 320px;
-      }
-      &.tal {
-        margin-top: 390px;
-      }
-      &.amazon {
-        margin-top: 435px;
-      }
-      &.degree {
-        margin-top: 515px;
-      }
-    }
+    height: 5100px;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .timeline {
-    &:before {
-      height: 1980px;
-    }
-
-    .column .node {
-      &.glyphite {
-        margin-top: 370px;
-      }
-      &.tal {
-        margin-top: 470px;
-      }
-      &.amazon {
-        margin-top: 535px;
-      }
-      &.degree {
-        margin-top: 755px;
-      }
-    }
+    height: 5300px;
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 586px) {
   .timeline {
-    &:before {
-      height: 2200px;
-    }
+    height: 5500px;
+  }
+}
 
-    .column .node {
-      &.glyphite {
-        margin-top: 410px;
-      }
-      &.tal {
-        margin-top: 490px;
-      }
-      &.amazon {
-        margin-top: 620px;
-      }
-      &.degree {
-        margin-top: 795px;
-      }
-    }
+@media (max-width: 486px) {
+  .timeline {
+    height: 5800px;
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 436px) {
+  .timeline {
+    height: 6200px;
+  }
+}
+@media (max-width: 390px) {
+  .timeline {
+    height: 6600px;
   }
 }

@@ -11,7 +11,7 @@ gulp.task('deploy', ['build'], function() {
     accessKeyId: awsCred.accessKeyId,
     secretAccessKey: awsCred.secretAccessKey,
     params: {
-      Bucket: 'samerchahine.com'
+      Bucket: 'www.rickyherbert.me'
     }
   });
 

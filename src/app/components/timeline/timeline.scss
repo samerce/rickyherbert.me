@@ -1,9 +1,12 @@
 .timeline {
-  $focusColor: green;
+  $accentColor: #6104db;
+  $accentColorDark: darken($accentColor, 20%);
+  $easeOut: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+
   position: relative;
   height: 5400px;
   max-width: 1100px;
-  margin: 30px auto 0;
+  margin: 0 auto;
   display: flex;
 
   &:before {
@@ -12,7 +15,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    background: linear-gradient(to bottom, black 95%, transparent);
+    background: linear-gradient(to bottom, $accentColorDark 95%, transparent);
     height: 100%;
     content: ' ';
   }
@@ -33,6 +36,9 @@
         left: 100%;
         margin-left: 15px;
       }
+      .node:hover .date {
+        transform: translateX(7px) scale(1.1, 1.1);
+      }
     }
     &.right {
       .pointer {
@@ -47,18 +53,56 @@
         margin-right: 15px;
         text-align: right;
       }
+      .node:hover .date {
+        transform: translateX(-7px) scale(1.1, 1.1);
+      }
     }
   }
 
+  $nodeHoverInTransition: all 4s $easeOut;
+  $nodeHoverOutTransition: all .6s $easeOut;
+  $nodeIconSpacing: 50px;
   .column .node {
     position: absolute;
     padding: 0 30px;
     min-width: 300px;
     width: 89.1%;
+    transition: top 1s $easeOut;
+
+    &.notable .innards {
+      border-color: $accentColor;
+      box-shadow: 0px 0px 3px rgba(0,0,0,.7);
+
+      .title {
+        font-weight: 600;
+      }
+
+      hr {
+        background: lighten($accentColor, 50%);
+      }
+    }
+
+    &:hover {
+      .innards {
+        box-shadow: 0px 0px 25px rgba(0,0,0,.1);
+        transform: scale(1.01, 1.01);
+        transition: $nodeHoverInTransition;
+      }
+      .date {
+        transition: $nodeHoverInTransition;
+      }
+    }
+
+    &:active {
+      .innards {
+        box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+        transform: scale(.98, .98);
+        transition: all .5s $easeOut;
+      }
+    }
 
     .pointer {
       position: absolute;
-
       font-size: 20px;
       color: rgba(0,0,0,.2);
     }
@@ -69,6 +113,7 @@
       box-shadow: 0px 0px 3px rgba(0,0,0,.1);
       background: white;
       position: relative;
+      transition: $nodeHoverOutTransition;
 
       p {
         margin: 12px 0;
@@ -85,15 +130,19 @@
       .title {
         font-size: 20px;
         line-height: 26px;
-        color: $focusColor;
+        color: $accentColor;
+        padding-left: $nodeIconSpacing;
       }
       .company {
-        font-size: 18px;
+        font-size: 17px;
         line-height: 28px;
         font-weight: 600;
+        color: $accentColorDark;
+        padding-left: $nodeIconSpacing;
       }
       .about {
         font-size: 16px;
+        color: darken($accentColor, 50%);
       }
       hr {
         border-color: rgba(0,0,0,.2);
@@ -104,8 +153,12 @@
       position: absolute;
       min-width: 141px;
       font-size: 16px;
-      color: green;
+      color: $accentColor;
       font-weight: 800;
+      transition: $nodeHoverOutTransition;
+      vertical-align: middle;
+      line-height: 18px;
+
       .sub-date {
         position: absolute;
         right: 0;
@@ -137,24 +190,35 @@
     .date, .dot-area, .pointer {
       top: 20px;
     }
-    &.glyphite {
-      .date {
-        min-width: 158px;
+
+    .tap-indicator {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      font-size: 24px;
+      display: none;
+
+      &:before {
+        color: fade-out($accentColor, .6);
       }
     }
-    &.tal {
-      .date {
-        min-width: 160px;
+
+    .node-icon {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      height: 40px;
+      width: 40px;
+      font-size: 32px;
+      color: $accentColor;
+      line-height: 55px;
+
+      &.fa-graduation-cap, &.fa-braille {
+        font-size: 28px;
       }
-    }
-    &.amazon {
-      .date {
-        min-width: 154px;
-      }
-    }
-    &.degree {
-      .date {
-        min-width: 154px;
+      &.fa-child, &.fa-tree {
+        padding-left: 5px;
       }
     }
   }
@@ -194,6 +258,14 @@
     left: 30px;
     right: 30px;
     width: initial;
+
+    .innards {
+      padding-right: 35px;
+    }
+
+    .tap-indicator {
+      display: initial;
+    }
 
     .pointer {
       display: none;
@@ -262,14 +334,25 @@
   }
 }
 
-@media only screen and (max-width: 1100px) {
+@media (max-width: 1075px) {
   .timeline {
     @include flatTimeline();
     height: 5100px;
+
+    .column.left, .column.right {
+      div.node {
+        &:hover div.date {
+          transform: translate(-50%, -1px);
+        }
+        .date {
+          line-height: initial;
+        }
+      }
+    }
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .timeline {
     height: 5300px;
   }
@@ -284,7 +367,6 @@
 @media (max-width: 486px) {
   .timeline {
     height: 5800px;
-    margin-top: 120px;
   }
 }
 
